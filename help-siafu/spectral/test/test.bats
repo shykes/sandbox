@@ -5,5 +5,5 @@ setup() {
 }
 
 @test "spectral" {
-    dagger "do" -p ./ruleset.cue rulesetOutput
+    dagger do test
 }
