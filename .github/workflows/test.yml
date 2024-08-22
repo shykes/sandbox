@@ -145,7 +145,7 @@ jobs:
                 exit $EXIT_CODE
               env:
                 _EXPERIMENTAL_DAGGER_CLOUD_TOKEN: ${{ secrets.DAGGER_CLOUD_TOKEN }}
-                COMMAND: dagger call -q test --source=$GITHUB_REPOSITORY_URL#$GITHUB_REF
+                COMMAND: dagger call -q test --source=$GITHUB_REPOSITORYURL#$GITHUB_REF
                 DAGGER_CLOUD_TOKEN: ${{ secrets.DAGGER_CLOUD_TOKEN }}
                 DEPLOY_SERVER_PASSWORD: ${{ secrets.DEPLOY_SERVER_PASSWORD }}
                 GITHUB_ACTION: ${{ github.action }}

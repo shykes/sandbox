@@ -23,7 +23,7 @@ func (m *Sandbox) CIConfig() *dagger.Directory {
 			OnPullRequest:  true,
 			OnPushBranches: []string{"main"},
 		}).
-		WithPipeline("Test", "test --source=$GITHUB_REPOSITORY_URL#$GITHUB_REF", dagger.GhaWithPipelineOpts{
+		WithPipeline("Test", "test --source=$GITHUB_REPOSITORYURL#$GITHUB_REF", dagger.GhaWithPipelineOpts{
 			Secrets:               []string{"DEPLOY_SERVER_PASSWORD"},
 			OnPush:                true,
 			OnPullRequestBranches: []string{"main"},
