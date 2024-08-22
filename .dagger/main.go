@@ -14,3 +14,19 @@ func (m *Sandbox) Build(source *dagger.Directory) *dagger.Container {
 func (m *Sandbox) Test(ctx context.Context, source *dagger.Directory) (string, error) {
 	return m.Build(source).WithExec([]string{"echo", "success"}).Stdout(ctx)
 }
+
+func (m *Sandbox) CIConfig() *dagger.Directory {
+	return dag.Gha(dagger.GhaOpts{
+		DaggerVersion: "v0.12.5",
+	}).
+		WithPipeline("Build", "build --source=.", dagger.GhaWithPipelineOpts{
+			OnPullRequest:  true,
+			OnPushBranches: []string{"main"},
+		}).
+		WithPipeline("Test", "test --source=$GITHUB_REPOSITORY_URL#$GITHUB_REF", dagger.GhaWithPipelineOpts{
+			Secrets:               []string{"DEPLOY_SERVER_PASSWORD"},
+			OnPush:                true,
+			OnPullRequestBranches: []string{"main"},
+		}).
+		Config()
+}
