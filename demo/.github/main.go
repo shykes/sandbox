@@ -10,7 +10,7 @@ type Ci struct{}
 func (m *Ci) Generate() *dagger.Directory {
 	return dag.Gha().WithPipeline(
 		"Hello",
-		"hello --name $GITHUB_OWNER",
+		"hello --name $GITHUB_REPOSITORY",
 		dagger.GhaWithPipelineOpts{
 			Module:        "github.com/shykes/hello",
 			OnPullRequest: true,

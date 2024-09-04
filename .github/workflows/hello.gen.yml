@@ -183,10 +183,10 @@ jobs:
                 exit $EXIT_CODE
               env:
                 _EXPERIMENTAL_DAGGER_CLOUD_TOKEN: ${{ secrets.DAGGER_CLOUD_TOKEN }}
-                COMMAND: dagger call -q hello --name $GITHUB_OWNER
+                COMMAND: dagger call -q hello --name $GITHUB_REPOSITORY
                 DAGGER_CLOUD_TOKEN: ${{ secrets.DAGGER_CLOUD_TOKEN }}
                 DAGGER_MODULE: github.com/shykes/hello
-                GITHUB_OWNER: ${{ github.github_owner }}
+                GITHUB_REPOSITORY: ${{ github.github_repository }}
               shell: bash
         outputs:
             stderr: ${{ steps.exec.outputs.stderr }}
